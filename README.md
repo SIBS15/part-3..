@@ -18,6 +18,9 @@ Organisers
 - Register and log in with the Organiser role.
 - View the organiser dashboard.
 - Create, edit and delete events.
+
+- YOUTUBE PRESENTATION
+- https://youtu.be/wpKrt-LoAM4
 - Upload event banner images.
 - Create and manage event categories.
 - View enrolments for their events.
