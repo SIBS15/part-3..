@@ -1,11 +1,12 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "RaceDay.Api",
-    "version": "1.0"
+    "title": "RaceDay API",
+    "description": "RESTful API for the RaceDay Event Management System - PROG6212 Part 2",
+    "version": "v1"
   },
   "paths": {
-    "/api/auth/register": {
+    "/api/Auth/register": {
       "post": {
         "tags": [
           "Auth"
@@ -31,12 +32,12 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/auth/login": {
+    "/api/Auth/login": {
       "post": {
         "tags": [
           "Auth"
@@ -62,19 +63,19 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/auth/logout": {
+    "/api/Auth/logout": {
       "post": {
         "tags": [
           "Auth"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -97,7 +98,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -137,7 +138,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -179,7 +180,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -200,12 +201,12 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/enrolments": {
+    "/api/Enrolments": {
       "post": {
         "tags": [
           "Enrolments"
@@ -231,24 +232,24 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/enrolments/me": {
+    "/api/Enrolments/mine": {
       "get": {
         "tags": [
           "Enrolments"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/events/{eventId}/enrolments": {
+    "/api/Enrolments/event/{eventId}": {
       "get": {
         "tags": [
           "Enrolments"
@@ -266,13 +267,13 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/enrolments/{id}": {
-      "delete": {
+    "/api/Enrolments/{id}/status": {
+      "put": {
         "tags": [
           "Enrolments"
         ],
@@ -287,21 +288,40 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrolmentStatusRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrolmentStatusRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnrolmentStatusRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/events": {
+    "/api/Events": {
       "get": {
         "tags": [
           "Events"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -330,12 +350,12 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/events/{id}": {
+    "/api/Events/{id}": {
       "get": {
         "tags": [
           "Events"
@@ -353,7 +373,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -376,24 +396,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateEventRequest"
+                "$ref": "#/components/schemas/UpdateEventRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateEventRequest"
+                "$ref": "#/components/schemas/UpdateEventRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateEventRequest"
+                "$ref": "#/components/schemas/UpdateEventRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       },
@@ -414,57 +434,27 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/enrolments/{enrolmentId}/results": {
-      "post": {
+    "/api/Events/mine": {
+      "get": {
         "tags": [
-          "Results"
+          "Events"
         ],
-        "parameters": [
-          {
-            "name": "enrolmentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateResultRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateResultRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateResultRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/results/{id}": {
-      "put": {
+    "/api/Events/{id}/banner": {
+      "post": {
         "tags": [
-          "Results"
+          "Events"
         ],
         "parameters": [
           {
@@ -479,43 +469,116 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateResultRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateResultRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateResultRequest"
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/results/me": {
+    "/api/Profile/me": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Profile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Results": {
+      "post": {
+        "tags": [
+          "Results"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Results/mine": {
       "get": {
         "tags": [
           "Results"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
     },
-    "/api/events/{eventId}/results": {
+    "/api/Results/event/{eventId}": {
       "get": {
         "tags": [
           "Results"
@@ -533,48 +596,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/users/me": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProfileRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProfileRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProfileRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
+            "description": "Success"
           }
         }
       }
@@ -583,26 +605,51 @@
   "components": {
     "schemas": {
       "CreateCategoryRequest": {
+        "required": [
+          "description",
+          "entryFee",
+          "maxAge",
+          "minAge",
+          "name"
+        ],
         "type": "object",
         "properties": {
-          "categoryName": {
-            "type": "string",
-            "nullable": true
+          "name": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
-          "categoryDistance": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
+          "description": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
           },
-          "maxParticipants": {
+          "minAge": {
+            "maximum": 100,
+            "minimum": 0,
             "type": "integer",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
+          },
+          "maxAge": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "entryFee": {
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
       },
       "CreateEnrolmentRequest": {
+        "required": [
+          "categoryId",
+          "eventId"
+        ],
         "type": "object",
         "properties": {
           "eventId": {
@@ -617,29 +664,47 @@
         "additionalProperties": false
       },
       "CreateEventRequest": {
+        "required": [
+          "description",
+          "distanceKm",
+          "eventDate",
+          "eventType",
+          "location",
+          "name"
+        ],
         "type": "object",
         "properties": {
-          "eventName": {
-            "type": "string",
-            "nullable": true
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
           },
           "eventDate": {
             "type": "string",
             "format": "date-time"
           },
           "location": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
           },
-          "distance": {
+          "distanceKm": {
+            "maximum": 500,
+            "minimum": 0.1,
             "type": "number",
             "format": "double"
           },
           "eventType": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "bannerImageUrl": {
             "type": "string",
             "nullable": true
           }
@@ -647,13 +712,23 @@
         "additionalProperties": false
       },
       "CreateResultRequest": {
+        "required": [
+          "enrolmentId",
+          "finishingPosition",
+          "finishTime"
+        ],
         "type": "object",
         "properties": {
-          "finishTime": {
-            "type": "string",
-            "format": "date-span"
+          "enrolmentId": {
+            "type": "integer",
+            "format": "int32"
           },
-          "finishPosition": {
+          "finishTime": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "finishingPosition": {
+            "maximum": 10000,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           }
@@ -661,39 +736,195 @@
         "additionalProperties": false
       },
       "LoginRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
         "type": "object",
         "properties": {
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "RegisterRequest": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "role"
+        ],
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "minLength": 6,
+            "type": "string"
           },
           "role": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "microseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "nanoseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMicroseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalNanoseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateEnrolmentStatusRequest": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateEventRequest": {
+        "required": [
+          "description",
+          "distanceKm",
+          "eventDate",
+          "eventType",
+          "location",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "eventDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "distanceKm": {
+            "maximum": 500,
+            "minimum": 0.1,
+            "type": "number",
+            "format": "double"
+          },
+          "eventType": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "bannerImageUrl": {
             "type": "string",
             "nullable": true
           }
@@ -701,33 +932,27 @@
         "additionalProperties": false
       },
       "UpdateProfileRequest": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName"
+        ],
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "lastName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
-          "phoneNumber": {
+          "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateResultRequest": {
-        "type": "object",
-        "properties": {
-          "finishTime": {
-            "type": "string",
-            "format": "date-span"
-          },
-          "finishPosition": {
-            "type": "integer",
-            "format": "int32"
+            "format": "email"
           }
         },
         "additionalProperties": false
